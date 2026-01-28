@@ -1,0 +1,399 @@
+body {
+  font-family: Arial; 
+  margin:0; 
+  background-color: linear-gradient(135deg, #026aa7, #5e9ed6);
+
+}
+
+.board {
+  display: flex;
+  gap: 12px;
+  padding: 16px;
+  align-items: flex-start;   /* 🔥 VERY IMPORTANT */
+}
+.list {
+  background: #ebecf0;
+  width: 280px;
+  border-radius: 8px;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  height: auto;             /* 🔥 allow independent height */
+}
+
+    
+.list h3 {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: #172b4d;
+  margin-top:0px; 
+  margin-bottom: 10px; 
+  margin-left: 6px;
+}
+
+.card {
+  border: 1px solid rgba(9,30,66,.08);
+  background:white; 
+  border-radius:6px; 
+  padding:8px; 
+  margin-bottom:8px; 
+  cursor:pointer; 
+  display:flex; 
+  gap:8px; 
+  align-items:center; 
+  transition:all .2s;
+}
+
+.card:hover {
+  background:#f4f5f7; 
+  transform: translateY(-2px);
+}
+
+.cards {
+  flex:1; 
+  min-height:10px;
+  position: relative;
+}
+
+.add-card {
+  background:transparent;
+  border-radius:6px;
+  padding:6px;
+  color:#5e6c84;
+  cursor:pointer;
+  font-weight: 500;
+}
+    
+    .tick {width:18px; height:18px; border-radius:50%; border:2px solid transparent; display:flex; align-items:center; justify-content:center; font-size:12px; color:white; flex-shrink:0; margin-right:10px;}
+    .card.hovered .tick {border:2px solid #5aac44;}
+    .tick.completed {background:#5aac44; content: "✓"; color: white;}
+    .card-title {flex:1;}
+    .card-title[contenteditable="true"] {outline:2px solid #0079bf;}
+    .actions {display:none; gap:6px;}
+    .card:hover .actions {display:flex;}
+    .actions button {border:none; background:transparent; cursor:pointer;}
+    
+    .add-card:hover {background:rgba(9,30,66,.08);}
+    .add-input {display:none; flex-direction:column; gap:6px;}
+    .add-input textarea {resize:none; border-radius:6px; padding:6px; border:2px solid #0079bf;}
+    .add-input button {background:#0079bf; border:none; color:white; padding:6px; border-radius:4px; cursor:pointer; display: flex;}
+
+    /* ===== CARD ===== */
+.card {
+  background: white;
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 1px 3px rgba(9,30,66,.25);
+  transition: box-shadow 0.2s ease, transform 0.15s ease;
+}
+
+.card:hover {
+  box-shadow: 0 4px 8px rgba(9,30,66,.25);
+}
+
+/* ===== TICK (hidden by default) ===== */
+.tick {
+  width: 0;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid #c1c7d0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  color: white;
+  opacity: 0;
+  margin-right: 0;
+  transition: 
+    width 0.2s ease,
+    margin 0.2s ease,
+    opacity 0.15s ease,
+    background 0.2s ease;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+/* ===== TEXT ===== */
+.card-title {
+  font-size: 14px;
+  margin-left: -30px;
+  transition: transform 0.2s ease;
+  transform: translateX(10px); /* default left padding */
+  flex: 1;
+  font-size: 14px;
+  line-height: 1.4;
+  word-break: break-word;
+  white-space: pre-wrap;     /* ⬅ allows multi-line text */
+  margin-right: 10px;
+}
+
+/* ===== ON HOVER ===== */
+.card:hover .tick {
+  width: 18px;
+  margin-right: 8px;
+  opacity: 1;
+}
+
+.card:hover .card-title {
+  transform: translateX(20px); /* move right naturally */
+}
+
+/* ===== COMPLETED STATE ===== */
+.card.completed .tick {
+  width: 18px;
+  margin-right: 30px;
+  opacity: 1;
+  background: #5aac44;
+  border-color: #5aac44;
+}
+
+.card.completed .tick::after {
+  content: "✓";
+}
+
+.card.completed .card-title {
+  text-decoration: line-through;
+  color: #6b778c;
+  transform: translateX(0);
+}
+
+.tick {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  color: white;
+  flex-shrink: 0;
+  opacity: 0;
+  transition: all .2s ease;
+}
+
+.card:hover .tick,
+.card.completed .tick {
+  opacity: 1;
+  border-color: #5aac44;
+}
+
+.tick.done {
+  background: #5aac44;
+}
+
+.tick.done::after {
+  content: "✓ ";
+  font-weight: bold;
+}
+
+
+
+.edit-textarea {
+  width: 100%;
+  margin-top: -70px;
+  resize: none;
+  padding: 6px;
+  font-family: inherit;
+  border-radius: 6px;
+  border: 2px solid #0079bf;
+  margin-bottom: -20px;
+}
+
+.edit-actions {
+  margin-top: 0px;
+  display: flex;
+  gap: 6px;
+}
+
+.save-btn {
+  background: #0079bf;
+  color: white;
+  border: none;
+  padding: 2px;
+  border-radius: 4px;
+  cursor: pointer;
+  height: 25px;
+  width: 60px;
+  margin-bottom: -35px;
+}
+
+.cancel-btn {
+  background: #ebecf0;
+  border: none;
+  padding: 2px;
+  height: 25px;
+  width: 60px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-bottom: -35px;
+}
+
+.sidebar{
+    width: 250px;
+    height: 628px;
+    margin: 0px;
+    margin-top: -20px;
+    background-color: rgba(222, 142, 142, 0.624);
+    border-right: 0.2px solid rgba(255, 255, 255, 0.442);
+}
+
+.dashb{
+    display: flex;
+}
+
+.tasksc{
+  background-color: #5e6c84;
+  margin-left:15px;
+  margin-right: 15px;
+  margin-top: -5px;
+  margin-bottom: 15px;
+  padding: 20px;
+  width: 82%;
+  border: 0.2px solid black;
+  border-radius: 20px;
+}
+
+#buted{
+  height: 25px;
+  padding: 5px;
+  margin-top: -5px;
+  margin-bottom: -7px;
+}
+
+#buted:hover{
+  background-color: rgba(196, 196, 196, 0.451);
+  border-radius: 15%;
+  padding: 5px;
+}
+
+.cards {
+  max-height: 50.5vh;        /* adjust if needed */
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+/* Smooth scrollbar */
+.cards::-webkit-scrollbar {
+  width: 6px;
+}
+.cards::-webkit-scrollbar-thumb {
+  background: #c1c7d0;
+  border-radius: 10px;
+}
+
+.add-but{
+  background: #0079bf;
+  color: white;
+  border: none;
+  padding: 2px;
+  border-radius: 4px;
+  cursor: pointer;
+  height: 30px;
+  width: 67%;
+}
+
+.cancel-but{
+  background: #ebecf0;
+  border: none;
+  padding: 2px;
+  height: 30px;
+  width: 30%;
+  border-radius: 4px;
+  margin-top: -36px;
+  margin-left: 70%;
+}
+
+.card.dragging {
+  transform: rotate(3deg) scale(1.03);
+  opacity: 0.85;
+  box-shadow: 0 12px 25px rgba(0,0,0,0.25);
+  cursor: grabbing;
+}
+
+.list.drag-over {
+  background: rgba(0, 121, 191, 0.12);
+  border: 2px dashed #1d9bf0;
+  transition: background 0.2s ease, border 0.2s ease;
+}
+
+.cards {
+  min-height: 40px;
+  padding-bottom: 8px;
+}
+
+.list.drag-over{
+  padding-bottom: 25px;
+}
+
+.card {
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.list.drag-over {
+  background: rgba(0, 121, 191, 0.12);
+  border: 2px dashed #1d9bf0;
+}
+
+.list.drag-over .card {
+  opacity: 1 !important;
+}
+
+.card.dragging {
+  transform: rotate(4deg) scale(1.05);
+  opacity: 0.9;
+  box-shadow: 0 18px 30px rgba(0,0,0,0.35);
+  cursor: grabbing;
+}
+
+.card {
+  background-clip: padding-box;
+}
+
+.card.dragging * {
+  pointer-events: none;
+}
+
+.drag-placeholder {
+  height: 48px;
+  background: rgba(0,0,0,0.08);
+  border-radius: 6px;
+  margin-bottom: 8px;
+}
+
+.card.dragging {
+  
+  z-index: 1000;
+  width: 260px;
+  transform: rotate(4deg);
+  box-shadow: 0 16px 30px rgba(0,0,0,0.35);
+}
+
+.list.drag-over {
+  background: rgba(0,121,191,0.12);
+  border-radius: 10px;
+}
+
+.titlep{
+  background-color: transparent;
+  backdrop-filter: blur(90px);
+  margin: -20px;
+  padding: 15px 20px;
+  margin-bottom: 0px;
+  font-size: 20px;
+  border-bottom: 2px solid #ffffff3b;
+  color: white;
+  border-top-left-radius: 19px;
+  border-top-right-radius: 19px;
+}
+
+
+button:active {
+  transform: scale(.96);
+}
